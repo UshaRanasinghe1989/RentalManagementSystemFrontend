@@ -8,7 +8,7 @@
     </div>
     <div class="mb-3">
         <label for="select-item" class="form-label">Select Item</label>
-        <select (change)="loadItemDetail(item.itemName)" [(ngModule)]="item.itemName" *ngFor="let item of itemList" class="form-select">
+        <select (change)="loadItemDetail(item.itemName)" *ngFor="let item of itemList" class="form-select">
             <option selected>Select Item</option>
             <option value={{item.id}}}>{{item.itemName}}</option>
         </select>
