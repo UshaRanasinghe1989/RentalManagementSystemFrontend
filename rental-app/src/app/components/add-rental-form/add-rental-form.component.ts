@@ -1,12 +1,12 @@
 import { CommonModule, NgFor } from '@angular/common';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule} from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-add-rental-form',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, NgFor,CommonModule],
+  imports: [HttpClientModule, FormsModule, NgFor, CommonModule],
   templateUrl: './add-rental-form.component.html',
   styleUrl: './add-rental-form.component.css'
 })
@@ -56,7 +56,7 @@ export class AddRentalFormComponent implements OnInit {
 
   //ADD NEW RENTAL
   public saveRental(item:any){
-    this.http.post("http://localhost:8080/item/", {body: item}).subscribe(
+    this.http.post("http://localhost:8080/item/", this.item).subscribe(
       res => {
         console.log(res);
       }
