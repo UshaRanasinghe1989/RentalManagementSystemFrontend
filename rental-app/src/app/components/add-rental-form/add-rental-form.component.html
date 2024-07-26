@@ -1,34 +1,34 @@
 <form class="col-6">
     <div class="mb-3">
         <label for="select-customer" class="form-label">Select Customer</label>
-        <select *ngFor="let customer of customerList" class="form-select">
+        <select *ngFor="let customer of customerList" id="select-customer" class="form-select select-customer">
             <option selected>Select Customer</option>
             <option value={{customer.id}}>{{customer.customerName}}</option>
         </select>
     </div>
     <div class="mb-3">
         <label for="select-item" class="form-label">Select Item</label>
-        <select (change)="loadItemDetail(item.itemName)" *ngFor="let item of itemList" class="form-select">
+        <select (change)="loadItemDetail('Item 2')" *ngFor="let item of itemList" id="select-item" class="form-select select-item">
             <option selected>Select Item</option>
-            <option value={{item.id}}}>{{item.itemName}}</option>
+            <option value={{item.itemName}}>{{item.itemName}}</option>
         </select>
     </div>
     <div class="mb-3">
         <label for="date-rental-date" class="form-label">Rental Date</label>
-        <input type="date" class="form-control" id="text" name="date-rental-date">
-    </div>
-    <div class="mb-3">
-        <label for="date-return-expect-date" class="form-label">Return Expect Date</label>
-        <input type="date" class="form-control" id="date-return-expect-date" name="date-return-expect-date">
-    </div>
+        <input [(ngModel)]="item.rentalDate" type="date" class="form-control" id="date-rental-date" name="date-rental-date">
+    </div>    
     <div class="mb-3">
         <label for="date-due-date" class="form-label">Due Date</label>
-        <input type="date" class="form-control" id="date-due-date" name="date-due-date">
+        <input [(ngModel)]="item.returnedDate" type="date" class="form-control" id="date-due-date" name="date-due-date">
+    </div>
+    <div class="mb-3">
+        <label for="date-returned-date" class="form-label">Returned Date</label>
+        <input [(ngModel)]="item.totalRentalCost" type="date" class="form-control" id="date-returned-date" name="date-returned-date">
     </div>
     <div class="mb-3">
         <label for="txt-total-cost" class="form-label">Total Cost(Rs.)</label>
-        <input type="text" class="form-control" id="txt-total-cost" name="txt-total-cost">
+        <input [(ngModel)]="item.fineAmount" type="text" class="form-control" id="txt-total-cost" name="txt-total-cost">
     </div>
     
-    <button type="submit" class="btn btn-primary col-12" id="add-rental">Add Rental</button>
+    <button (click)="saveRental(item)" type="submit" class="btn btn-primary col-12" id="add-rental">Add Rental</button>
 </form>

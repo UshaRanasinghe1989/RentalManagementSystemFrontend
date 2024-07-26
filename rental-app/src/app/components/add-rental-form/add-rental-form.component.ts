@@ -1,12 +1,12 @@
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-add-rental-form',
   standalone: true,
-  imports: [HttpClientModule, FormsModule, NgFor],
+  imports: [HttpClientModule, FormsModule, NgFor,CommonModule],
   templateUrl: './add-rental-form.component.html',
   styleUrl: './add-rental-form.component.css'
 })
@@ -37,9 +37,26 @@ export class AddRentalFormComponent implements OnInit {
     );
   }
 
+  public item:any = {
+    itemName: undefined,
+    rentalDate: undefined,
+    returnedDate: undefined,
+    totalRentalCost: undefined,
+    fineAmount: undefined
+  }
+
   //LOAD ITEM DETAIL BY NAME
   public loadItemDetail(itemName:any){
-    this.http.get("http://localhost:8080/item/itemName").subscribe(
+    this.http.get("http://localhost:8080/item/"+itemName).subscribe(
+      res => {
+        this.item = res;
+      }
+    );
+  }
+
+  //ADD NEW RENTAL
+  public saveRental(item:any){
+    this.http.post("http://localhost:8080/item/", {body: item}).subscribe(
       res => {
         console.log(res);
       }
